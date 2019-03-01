@@ -1,17 +1,65 @@
 {
-  "name": "root",
-  "private": true,
+  "name": "@awe/core",
+  "version": "1.0.0",
+  "description": "awe core",
+  "author": "agoran-association",
+  "homepage": "",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "types": "types/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib",
+    "types"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "scripts": {
+    "lint": "tslint --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
+    "test": "jest --coverage",
+    "build": "tsc --project tsconfig.json"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "testEnvironment": "node",
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    },
+    "collectCoverageFrom": [
+      "src/*.{js,ts}"
+    ]
+  },
   "devDependencies": {
-    "@types/jest": "^24.0.9",
-    "@types/node": "^11.9.5",
     "jest": "^24.1.0",
     "jest-config": "^24.1.0",
-    "lerna": "^3.4.0",
     "ts-jest": "^24.0.0",
     "ts-node": "^8.0.2",
     "tslint": "^5.13.0",
+    "typescript": "^3.3.3333",
+    "@types/jest": "^24.0.9",
+    "@types/node": "^11.9.5",
     "tslint-config-prettier": "^1.18.0",
-    "tslint-config-standard": "^8.0.1",
-    "typescript": "^3.3.3333"
+    "tslint-config-standard": "^8.0.1"
   }
 }
