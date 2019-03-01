@@ -61,5 +61,8 @@
     "@types/node": "^11.9.5",
     "tslint-config-prettier": "^1.18.0",
     "tslint-config-standard": "^8.0.1"
+  },
+  "dependencies": {
+    "wolfy87-eventemitter": "^5.2.6"
   }
 }
