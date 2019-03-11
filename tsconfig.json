@@ -11,13 +11,13 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "typeRoots": [
-      "node_modules/@types"
+      "node_modules/@types", "global.d.ts"
     ],
     "declarationDir": "types",
     "outDir": "lib"
   },
   "include": [
-    "src"
+    "src", "global.d.ts"
   ],
   "exclude": [
     "lib", "types"

@@ -1,7 +1,7 @@
 {
-  "name": "@awe/core",
+  "name": "awe",
   "version": "1.0.0",
-  "description": "awe core",
+  "description": "Agora WebSDK Enhancer",
   "author": "agoran-association",
   "homepage": "",
   "license": "MIT",
@@ -20,15 +20,16 @@
   },
   "scripts": {
     "lint": "tslint --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
-    "test": "jest --coverage",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
     "build": "tsc --project tsconfig.json"
   },
   "jest": {
     "transform": {
       ".(ts|tsx)": "ts-jest"
     },
-    "testEnvironment": "node",
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testEnvironment": "jsdom",
+    "testRegex": "(/__tests__/.*\\.(test|spec))\\.(ts|tsx|js)$",
     "moduleFileExtensions": [
       "ts",
       "tsx",
@@ -51,18 +52,21 @@
     ]
   },
   "devDependencies": {
+    "@types/jest": "^24.0.9",
+    "@types/node": "^11.9.5",
     "jest": "^24.1.0",
     "jest-config": "^24.1.0",
     "ts-jest": "^24.0.0",
     "ts-node": "^8.0.2",
     "tslint": "^5.13.0",
-    "typescript": "^3.3.3333",
-    "@types/jest": "^24.0.9",
-    "@types/node": "^11.9.5",
     "tslint-config-prettier": "^1.18.0",
-    "tslint-config-standard": "^8.0.1"
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.3.3333"
   },
   "dependencies": {
     "wolfy87-eventemitter": "^5.2.6"
+  },
+  "peerDependencies": {
+    "agora-rtc-sdk": "^2.5.0"
   }
 }
