@@ -2,8 +2,12 @@
  * Proxy methods for original object (Client, Stream, AgoraRTC) 
  * in Agora Web SDK.
  */
+import AgoraRTC from 'agora-rtc-sdk'
+import {Enhancer} from './type'
 
-function enhance<Subject>(subject: Subject, methodEnhancers: Enhancer[]): Subject {
+type Subject = AgoraRTC.Stream | AgoraRTC.Client | typeof AgoraRTC
+
+function enhance(subject: Subject, methodEnhancers: Enhancer[]) {
   const handler = {
     get(target: any, prop: string, receiver: any) {
       const origin = Reflect.get(target, prop, receiver);

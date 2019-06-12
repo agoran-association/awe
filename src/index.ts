@@ -1,16 +1,17 @@
 /**
  * Import enhancers and do proxy
  */
-
+import AgoraRTC, { ClientConfig } from 'agora-rtc-sdk'
 import enhance from './enhance';
-import {promisifyClient, promisifyStream} from './promisify'
+import {IClientWithPromise, IStreamWithPromise, promisifyClient, promisifyStream } from './promisify'
+import {Enhancer} from './type'
 
-const enhanceClient = (client: AgoraClient) => {
-  return enhance<AgoraClient>(client, [promisifyClient]);
+const enhanceClient = (client: AgoraRTC.Client): IClientWithPromise => {
+  return enhance(client, [promisifyClient]);
 }
 
-const enhanceStream = (stream: AgoraStream) => {
-  return enhance<AgoraStream>(stream, [promisifyStream]);
+const enhanceStream = (stream: AgoraRTC.Stream): IStreamWithPromise => {
+  return enhance(stream, [promisifyStream]);
 }
 
 const AgoraRTCEnhancer: Enhancer = (methodName, options) => {
@@ -25,8 +26,15 @@ const AgoraRTCEnhancer: Enhancer = (methodName, options) => {
   }
 }
 
-const enhanceAgoraRTC = (AgoraRTC: AgoraRTC) => {
-  return enhance<AgoraRTC>(AgoraRTC, [AgoraRTCEnhancer]);
+type IEngine = typeof AgoraRTC
+
+interface IEngineWithPromise extends IEngine {
+  createClient: (config: AgoraRTC.ClientConfig) => IClientWithPromise
+  createStream: (spec: AgoraRTC.StreamSpec) => IStreamWithPromise
+}
+
+const enhanceAgoraRTC = (rtcEngine: typeof AgoraRTC): IEngineWithPromise => {
+  return enhance(rtcEngine, [AgoraRTCEnhancer]);
 }
 
 export default enhanceAgoraRTC;

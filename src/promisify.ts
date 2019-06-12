@@ -1,5 +1,5 @@
+import {Enhancer} from './type'
 /** ==== promisify client ==== */
-
 export const promisifyClient: Enhancer = (methodName, options) => {
   const {target, thisArg, argumentList} = options;
   switch(methodName) {
@@ -25,7 +25,7 @@ export const promisifyClient: Enhancer = (methodName, options) => {
     case 'subscribe':
       return new Promise((resolve, reject) => {
         setTimeout(resolve)
-        Reflect.apply(target, thisArg, [...argumentList.slice(0, 1), reject])
+        Reflect.apply(target, thisArg, [...argumentList.slice(0, 2), reject])
       });          
     case 'unpublish':
       return new Promise((resolve, reject) => {
@@ -98,4 +98,30 @@ export const promisifyStream: Enhancer = (methodName, options) => {
         Reflect.apply(target, thisArg, [resolve, reject])
       });
   }
+}
+
+export interface IClientWithPromise extends AgoraRTC.Client {
+  init: (appId: string) => Promise<void>
+  join: (token: null | string, channel: string, uid: string | number | null) => Promise<string>
+  leave: () => Promise<void>
+  publish: (stream: AgoraRTC.Stream) => Promise<void>
+  subscribe: (stream: AgoraRTC.Stream, options: {video: boolean, audio: boolean}) => Promise<void>
+  unpublish: (stream: AgoraRTC.Stream) => Promise<void>
+  unsubscribe: (stream: AgoraRTC.Stream) => Promise<void>
+  enableDualStream: () => Promise<void>
+  getCameras: () => Promise<MediaDeviceInfo[]>
+  getLocalAudioStats: () => Promise<AgoraRTC.LocalAudioStatsMap>
+  getLocalVideoStats: () => Promise<AgoraRTC.LocalVideoStatsMap>
+  getNetworkStats: () => Promise<AgoraRTC.NetworkStats>
+  getPlayoutDevices: () => Promise<MediaDeviceInfo[]>
+  getRecordingDevices: () => Promise<MediaDeviceInfo[]>
+  getRemoteAudioStats: () => Promise<AgoraRTC.RemoteAudioStatsMap>
+  getRemoteVideoStats: () => Promise<AgoraRTC.RemoteVideoStatsMap>
+  getSystemStats: () => Promise<AgoraRTC.SystemStats>
+  getTransportStats: () => Promise<AgoraRTC.TransportStats>
+}
+
+export interface IStreamWithPromise extends AgoraRTC.Stream {
+  init: () => Promise<void>
+  getStats: () => Promise<AgoraRTC.LocalStreamStats | AgoraRTC.RemoteStreamStats>
 }
