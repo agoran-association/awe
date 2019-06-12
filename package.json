@@ -1,6 +1,6 @@
 {
   "name": "agoran-awe",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Agora WebSDK Enhancer",
   "author": "agoran-association",
   "homepage": "",
@@ -20,8 +20,6 @@
   },
   "scripts": {
     "lint": "tslint --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
     "build": "tsc --project tsconfig.json"
   },
   "jest": {
@@ -55,6 +53,7 @@
     "@types/agora-rtc-sdk": "^2.6.0",
     "@types/jest": "^24.0.9",
     "@types/node": "^11.9.5",
+    "agora-rtc-sdk": "^2.6.1",
     "jest": "^24.1.0",
     "jest-config": "^24.1.0",
     "ts-jest": "^24.0.0",
@@ -68,6 +67,6 @@
     "wolfy87-eventemitter": "^5.2.6"
   },
   "peerDependencies": {
-    "agora-rtc-sdk": "^2.5.0"
+    "agora-rtc-sdk": "^2.6.1"
   }
 }
