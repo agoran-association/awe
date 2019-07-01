@@ -1,7 +1,7 @@
 /**
  * Import enhancers and do proxy
  */
-import AgoraRTC, { ClientConfig } from 'agora-rtc-sdk'
+import AgoraRTC from 'agora-rtc-sdk'
 import enhance from './enhance';
 import {IClientWithPromise, IStreamWithPromise, promisifyClient, promisifyStream } from './promisify'
 import {Enhancer} from './type'

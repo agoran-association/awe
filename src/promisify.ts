@@ -4,7 +4,7 @@ export const promisifyClient: Enhancer = (methodName, options) => {
   const {target, thisArg, argumentList} = options;
   switch(methodName) {
     default:
-      Reflect.apply(target, thisArg, argumentList)
+      return Reflect.apply(target, thisArg, argumentList)
     case 'init':
       return new Promise((resolve, reject) => {
         Reflect.apply(target, thisArg, [...argumentList.slice(0, 1), resolve, reject])
@@ -88,7 +88,7 @@ export const promisifyStream: Enhancer = (methodName, options) => {
   const {target, thisArg, argumentList} = options;
   switch(methodName) {
     default:
-    Reflect.apply(target, thisArg, argumentList)
+      return Reflect.apply(target, thisArg, argumentList)
     case 'init':
       return new Promise((resolve, reject) => {
         Reflect.apply(target, thisArg, [resolve, reject])
