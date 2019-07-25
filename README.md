@@ -5,11 +5,11 @@
 ## Quick Start
 
 ```
-npm install agora-rtc-sdk awe
+npm install agora-rtc-sdk agoran-awe
 ```
 
 ```
-import enhanceAgoraRTC from 'awe';
+import enhanceAgoraRTC from 'agoran-awe';
 import AgoraRTC from 'agora-rtc-sdk';
 
 const engine = enhanceAgoraRTC(AgoraRTC)
